@@ -4,7 +4,7 @@
     args="0 0 .1 0 0 0 base_link imu_link 50" />	
 
 	<node name="i2c_imu_node" pkg="i2c_imu" type="i2c_imu_node" ns="imu" output="screen">
-        <param name="settings_file_directory" type="str" value="/home/ubuntu/ThunderTrekking/Main/src/assets/RTIMULib" />
+        <param name="settings_path" type="str" value="/home/ubuntu/ThunderTrekking/Main/src/assets/RTIMULib" />
 	</node>
 
 </launch>

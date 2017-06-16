@@ -107,10 +107,10 @@ I2cImu::I2cImu() :
 		}
 	}
 
-	std::string settings_file_directory;
-	private_nh_.getParam("settings_file_directory", settings_file_directory);
-	ROS_INFO("%s\n", settings_file_directory.c_str());
-	imu_settings_ = new RTIMUSettings(settings_file_directory.c_str());
+	std::string settings_path;
+	private_nh_.param<std::string>("settings_path", settings_path, "RTIMULib");
+	ROS_INFO("%s\n", settings_path.c_str());
+	imu_settings_ = new RTIMUSettings(settings_path.c_str());
 
 	private_nh_.param("magnetic_declination", declination_radians_, 0.0);
 
@@ -129,11 +129,12 @@ I2cImu::I2cImu() :
 		ROS_BREAK();
 	}
 
-        imu_->setSlerpPower(0.02);
-        imu_->setGyroEnable(true);
-        imu_->setAccelEnable(true);
-        imu_->setCompassEnable(true);
+    imu_->setSlerpPower(0.02);
+    imu_->setGyroEnable(true);
+    imu_->setAccelEnable(true);
+    imu_->setCompassEnable(true);
 	
+	delete imu_settings_;
 }
 
 void I2cImu::update()
