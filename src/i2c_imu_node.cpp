@@ -134,7 +134,6 @@ I2cImu::I2cImu() :
     imu_->setAccelEnable(true);
     imu_->setCompassEnable(true);
 	
-	delete imu_settings_;
 }
 
 void I2cImu::update()
@@ -200,6 +199,8 @@ void I2cImu::spin()
 		update();
 		r.sleep();
 	}
+	
+	delete imu_settings_;
 }
 
 int main(int argc, char** argv)
